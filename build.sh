@@ -2,10 +2,11 @@
 
 set -e
 
+DATESTAMP=`date +%Y%m%d%H%M%S`
 mkdir -p ./tgz
-docker build --tag=build/asterisk -f build.Dockerfile .
+time docker build --tag=build/asterisk:${DATESTAMP} -f build.Dockerfile .
 
-CONTAINER=`docker run -d build/asterisk`
+CONTAINER=`docker run -d build/asterisk:${DATESTAMP}`
 echo "Running utility container: ${CONTAINER}"
 
 docker cp ${CONTAINER}:/tmp/asterisk.tgz ./tgz/
