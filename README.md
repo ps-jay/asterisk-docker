@@ -12,3 +12,12 @@ contains the CentOS 7 OS and the Asterisk binaries.
 
 This keeps the image size smaller than if we used the build container as
 the reference image.
+
+## Running the Asterisk image
+
+```
+docker run -t -d -m 512mb \
+           -v /path/to/config:/etc/asterisk \
+           --restart=always --name asterisk \
+           local/asterisk
+```

@@ -18,6 +18,8 @@ RUN yum install -y \
 RUN useradd -r -d / -s /sbin/nologin asterisk
 ADD tgz/asterisk.tgz /
 
-#USER asterisk
+USER asterisk
 
 VOLUME /etc/asterisk
+
+CMD /usr/sbin/asterisk -f -vvv -c
