@@ -18,6 +18,8 @@ RUN  yum install -y \
              newt-devel \
              libuuid-devel \
              sqlite-devel \
+             uriparser-devel \
+             libxslt-devel \
              jansson-devel
 
 RUN  mkdir -p /tmp/source /tmp/build
@@ -44,7 +46,6 @@ RUN  menuselect/menuselect \
          --enable-category MENUSELECT_BRIDGES \
          --enable-category MENUSELECT_FORMATS \
          --enable LOADABLE_MODULES \
-         --enable DISABLE_INLINE \
          --enable app_confbridge \
          --enable app_dial \
          --enable app_echo \
@@ -69,6 +70,11 @@ RUN  menuselect/menuselect \
          --enable codec_g722 \
          --enable codec_g726 \
          --enable codec_ulaw \
+         --enable pbx_config \
+         --enable res_crypto \
+         --enable res_http_websocket \
+         --enable res_musiconhold \
+         --enable res_rtp_asterisk \
          --enable CORE-SOUNDS-EN_AU-WAV \
          --enable CORE-SOUNDS-EN_AU-ALAW \
          --enable CORE-SOUNDS-EN_AU-G722 \
@@ -76,7 +82,7 @@ RUN  menuselect/menuselect \
          --enable CORE-SOUNDS-EN_AU-ULAW \
          menuselect.makeopts
 
-RUN  make -j `nproc`
+RUN  time make -j `nproc`
 
 RUN  make install DESTDIR=/tmp/build
 
