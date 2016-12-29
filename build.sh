@@ -6,7 +6,7 @@ while getopts ":n" opt; do
   case $opt in
     n)
       echo "INFO: native CPU build requested, run built image on same architecture" >&2
-      NATIVE="--enable BUILD_NATIVE \"
+      NATIVE="--enable BUILD_NATIVE"
       ;;
     *)
       echo "Invalid option: -${OPTARG}" >&2
