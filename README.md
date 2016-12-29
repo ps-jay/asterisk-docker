@@ -1,13 +1,14 @@
 # Method for building asterisk & creating a asterisk running container.
 
-## Building asterisk
+## Building the Docker image with Asterisk
 
 ```
 ./build.sh
 ```
 
-Outputs asterisk.tgz in ./tgz
+This script creates a "build" container that compiles Asterisk.  It then
+extracts the built copy of Asterisk & makes a new Docker image that only
+contains the CentOS 7 OS and the Asterisk binaries.
 
-## Create asterisk container
-
-TBC
+This keeps the image size smaller than if we used the build container as
+the reference image.
