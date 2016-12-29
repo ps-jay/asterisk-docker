@@ -43,6 +43,8 @@ RUN  menuselect/menuselect --disable-all menuselect.makeopts
 RUN  menuselect/menuselect \
          --enable-category MENUSELECT_BRIDGES \
          --enable-category MENUSELECT_FORMATS \
+         --enable LOADABLE_MODULES \
+         --enable DISABLE_INLINE \
          --enable app_confbridge \
          --enable app_dial \
          --enable app_echo \
