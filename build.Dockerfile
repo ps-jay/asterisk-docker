@@ -62,7 +62,6 @@ RUN  menuselect/menuselect \
          --enable app_transfer \
          --enable app_verbose \
          --enable chan_bridge_media \
-         --enable chan_rtp \
          --enable chan_sip \
          --enable codec_a_mu \
          --enable codec_adpcm \
@@ -71,20 +70,20 @@ RUN  menuselect/menuselect \
          --enable codec_g726 \
          --enable codec_ulaw \
          --enable pbx_config \
+         --enable res_agi \
          --enable res_crypto \
          --enable res_http_websocket \
+         --enable res_monitor \
          --enable res_musiconhold \
          --enable res_rtp_asterisk \
-         --enable CORE-SOUNDS-EN_AU-WAV \
+         --enable res_timing_timerfd \
          --enable CORE-SOUNDS-EN_AU-ALAW \
-         --enable CORE-SOUNDS-EN_AU-G722 \
-         --enable CORE-SOUNDS-EN_AU-G729 \
          --enable CORE-SOUNDS-EN_AU-ULAW \
          menuselect.makeopts
 
 RUN  time make -j `nproc`
 
-RUN  make install DESTDIR=/tmp/build
+RUN  time make install DESTDIR=/tmp/build
 
 WORKDIR /tmp/build
 
