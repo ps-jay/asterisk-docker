@@ -86,11 +86,14 @@ RUN  time make -j `nproc`
 RUN  time make install DESTDIR=/tmp/build
 
 WORKDIR /tmp/build
-
 RUN  sed -i -e 's/# MAXFILES=/MAXFILES=/' usr/sbin/safe_asterisk
 RUN  rm -rf etc
+
+WORKDIR /tmp/build/var/lib/asterisk/sounds
+RUN  ln -s en_AU en
+
+WORKDIR /tmp/build
 RUN  tar -czf /tmp/asterisk.tgz .
 
 WORKDIR /tmp
-
 RUN  echo "Created tgz SHA1: `sha1sum asterisk.tgz`"
