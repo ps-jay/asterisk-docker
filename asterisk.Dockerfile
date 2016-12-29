@@ -22,4 +22,4 @@ USER asterisk
 
 VOLUME /etc/asterisk
 
-CMD /usr/sbin/asterisk -f -vvv -c
+CMD /usr/sbin/asterisk -f -vvv
