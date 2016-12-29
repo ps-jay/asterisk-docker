@@ -16,8 +16,9 @@ the reference image.
 ## Running the Asterisk image
 
 ```
-docker run -t -d -m 512mb \
+docker run -d -m 512mb \
            -v /path/to/config:/etc/asterisk \
+           -p 5060:5060/udp \
            --restart=always --name asterisk \
            local/asterisk
 ```
