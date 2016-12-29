@@ -33,5 +33,11 @@ RM_CONTAINER=`docker rm -f ${CONTAINER}`
 echo "Removed utility container: ${RM_CONTAINER}"
 
 time docker build --tag=local/asterisk:${DATESTAMP} -f asterisk.Dockerfile .
-docker tag -f local/asterisk:${DATESTAMP} local/asterisk:latest
+
+# Moving latest tag if it exists"
+set +e
+docker rmi local/asterisk:latest 2>&1 > /dev/null
+set -e
+docker tag local/asterisk:${DATESTAMP} local/asterisk:latest
+
 rm -rf ./tgz
