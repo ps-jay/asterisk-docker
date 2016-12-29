@@ -39,6 +39,9 @@ WORKDIR /tmp/source
 RUN  ./configure \
          --libdir=/usr/lib64
 
+ARG  NATIVE
+RUN  echo "NATIVE is set to '${NATIVE}'"
+
 # Only build what we want to
 RUN  make menuselect
 RUN  menuselect/menuselect --disable-all menuselect.makeopts

@@ -17,7 +17,7 @@ done
 DATESTAMP=`date +%Y%m%d%H%M%S`
 time docker build \
         --tag=build/asterisk:${DATESTAMP} \
-        --build-arg NATIVE=${NATIVE:-} \
+        --build-arg "NATIVE=${NATIVE:-}" \
         -f build.Dockerfile .
 
 CONTAINER=`docker create build/asterisk:${DATESTAMP}`
