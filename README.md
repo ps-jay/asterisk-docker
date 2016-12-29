@@ -22,3 +22,15 @@ docker run -d -m 512mb \
            --restart=always --name asterisk \
            local/asterisk
 ```
+
+## Enabling / Disabling modules to be built
+
+It's sometimes useful to be able to run the ncurses based menuselect and investigate options.
+
+Do this:
+
+```
+docker run -it build/asterisk:<timestamp> bash
+cd /tmp/source
+make menuselect
+```
