@@ -7,7 +7,7 @@ mkdir -p ./tgz
 time docker build --tag=build/asterisk:${DATESTAMP} -f build.Dockerfile .
 
 CONTAINER=`docker create build/asterisk:${DATESTAMP}`
-echo "Running utility container: ${CONTAINER}"
+echo "Created utility container: ${CONTAINER}"
 
 docker cp ${CONTAINER}:/tmp/asterisk.tgz ./tgz/
 cd ./tgz
@@ -17,6 +17,6 @@ cd ${OLDPWD}
 RM_CONTAINER=`docker rm -f ${CONTAINER}`
 echo "Removed utility container: ${RM_CONTAINER}"
 
-docker build --tag=local/asterisk:${DATESTAMP} -f asterisk.Dockerfile .
-docker tag local/asterisk:${DATESTAMP} local/asterisk:latest
+time docker build --tag=local/asterisk:${DATESTAMP} -f asterisk.Dockerfile .
+docker tag -f local/asterisk:${DATESTAMP} local/asterisk:latest
 rm -rf ./tgz
